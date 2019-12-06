@@ -193,5 +193,7 @@ public class JFSM {
       System.out.println(" automate is utile");
       System.out.println(afn.estUtile());
       
+      
+      
    }
 }

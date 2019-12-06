@@ -417,17 +417,43 @@ public class Automate implements Cloneable {
 	*/
 	public Automate standardiser() throws JFSMException {
 		
+		if(this.estStandard()) { return this;}  //si l'automate est deja standard
+		
 		Automate afn = (Automate) this.clone();
+		
+		
+		
         afn.I.clear();
-        afn.I.add("A");
+        afn.I.add("I");  //le nouveau etat initial
         
-        for(Transition trans : this.mu ) {
-        	if(this.I.contains(trans.source)) {
-        	afn.mu.add(new Transition("A",trans.symbol,trans.cible)); 
+        if(!afn.epsilonLibre()) {             //pour les automates non epsilon-libre
+        	for(String etat : this.I) {
+        		afn.mu.add(new EpsilonTransition("I", etat));     //ajouter des epsilon-transitions de I vers les etats initiaux
+        	}
+        	
+        	return afn;
+        	
+		}
+        
+        
+        
+        for(String etat : this.I) {          //si un etat initial est aussi final, supprimer cet etat des etats finaux
+        	if(this.F.contains(etat)) {      
+        		afn.F.remove(etat);
+        		afn.F.add("I");            //I devient un etat final
         	}
         }
         
-        afn = afn.emonder();
+        
+        
+        
+        for(Transition trans : this.mu ) {
+        	if(this.I.contains(trans.source)) {            //si le source d'une transition est un etat initial
+        	afn.mu.add(new Transition("I",trans.symbol,trans.cible)); //ajouter une transition de I vers cet etat
+        	}
+        }
+        
+        afn = afn.emonder();  //supprimer les etats inutiles
         
 		
 
@@ -442,11 +468,11 @@ public class Automate implements Cloneable {
 		
 		boolean ok = false;
 
-		// A compléter
-		if(this.I.size() == 1) { 
+		
+		if(this.I.size() == 1) {   //s'il n'existe qu'un seul etat initial
 			ok = true;
 			for(Transition trans : this.mu) {
-				if(this.I.contains(trans.cible)) {
+				if(this.I.contains(trans.cible)) {  //s'il existe des transition vers l'etat initial
 					ok = false;
 					
 				}
@@ -454,7 +480,7 @@ public class Automate implements Cloneable {
 				
 		}
 		
-		return this.I.size() == 1 && ok;
+		return ok;
 	}
 
 	/** 
@@ -463,14 +489,26 @@ public class Automate implements Cloneable {
 	*/
 	public Automate normaliser() throws JFSMException {
 		
-		Automate afn = (Automate) this.clone();
+		  Automate afn = (Automate) this.clone();
 		  afn = afn.standardiser();
+		  if(this.estNormalise()) { return afn;}  //si l'automate est deja normalise
+		  
 		  afn.F.clear();
-	      afn.F.add("F");
+	      afn.F.add("F");  //le nouveau etat final
+	      
+	      if(!afn.epsilonLibre()) {             //pour les automates non epsilon-libre
+	        
+	    	for(String etat : this.F) {
+	        	afn.mu.add(new EpsilonTransition(etat, "F"));     //ajouter des epsilon-transitions des etats finaux ver F
+	        }
+	        	
+	        return afn;
+	        	
+		  }
 	        
 	      for(Transition trans : this.mu ) {
-	        if(this.F.contains(trans.cible)) {
-	           afn.mu.add(new Transition(trans.source,trans.symbol,"F")); 
+	        if(this.F.contains(trans.cible)) {                                 //si la cible d'une transition est un etat final
+	           afn.mu.add(new Transition(trans.source,trans.symbol,"F"));     //ajouter une transition de cet etat vers F
 	        }
 	      }
 	        
@@ -487,10 +525,10 @@ public class Automate implements Cloneable {
 		boolean ok = false;
 
 		
-		if(this.F.size() == 1) { 
+		if(this.F.size() == 1) {    //s'il n'existe qu'un seul etat final 
 			ok = true;
 			for(Transition trans : this.mu) {
-				if(this.F.contains(trans.source)) {
+				if(this.F.contains(trans.source)) {   //s'il existe des transition de l'etat final
 					ok = false;
 					
 				}
@@ -498,7 +536,7 @@ public class Automate implements Cloneable {
 				
 		}
 		
-		return this.I.size() == 1 && ok && this.estStandard();
+		return ok && this.estStandard();
 		
 
 		
