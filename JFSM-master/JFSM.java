@@ -138,7 +138,58 @@ public class JFSM {
       
       
      /************fin automate 2*************/ 
-     
+      
+      /************fin automate 3 cas 1 transpose*************/ 
+      Set<String> A3 = new HashSet<String>();      
+      A3.add("a");A3.add("b");A3.add("c");
+      
+      
+      Set<Etat> Q3 = new HashSet<Etat>();
+      Q3.add(new Etat("1"));Q3.add(new Etat("2"));Q3.add(new Etat("3"));
+
+      Set<Transition> mu3 = new HashSet<Transition>();
+      mu3.add(new Transition("1","b","1"));
+      mu3.add(new Transition("1","a","2"));
+      mu3.add(new Transition("2","c","2"));
+      mu3.add(new Transition("2","b","3"));
+      
+      Set<String> F3 = new HashSet<String>();
+      F3.add("3");
+      
+      Set<String> I3 = new HashSet<String>();
+      I3.add("1");
+      
+      Automate auto3 = new AFN(A3, Q3, I3, F3, mu3);
+      
+      /************fin automate 3*************/
+      
+      /************automate 4 cas 1 mise a l'etoile*************/
+      Set<String> A4 = new HashSet<String>();      
+      A4.add("a");A4.add("b");A4.add("c");
+      
+      
+      Set<Etat> Q4 = new HashSet<Etat>();
+      Q4.add(new Etat("1"));Q4.add(new Etat("2"));Q4.add(new Etat("3"));
+
+      Set<Transition> mu4 = new HashSet<Transition>();
+      mu4.add(new Transition("1","a","2"));
+      mu4.add(new Transition("2","b","2"));
+      mu4.add(new Transition("2","c","3"));
+      
+    
+      
+      Set<String> F4 = new HashSet<String>();
+      F4.add("3");
+      F4.add("1");
+      
+      
+      Set<String> I4 = new HashSet<String>();
+      I4.add("1");
+      
+      Automate auto4 = new AFN(A4, Q4, I4, F4, mu4);
+      
+      /************fin automate 4*************/
+      
       //test automate 2 
       List<String> l2 = new ArrayList<String>();    //MEU MEU BU ZO BU MEU
       l2.add("MEU");l2.add("MEU");l2.add("BU");l2.add("ZO");l2.add("BU");l2.add("MEU");
@@ -193,7 +244,15 @@ public class JFSM {
       System.out.println(" automate is utile");
       System.out.println(afn.estUtile());
       
+      System.out.println(" -------------test transpose-------------");
+      System.out.println(auto3);
+      System.out.println(" transpose de auto3 :");
+      System.out.println(auto3.transpose());
       
+      System.out.println(" -------------test etoile-------------");
+      System.out.println(auto4);
+      System.out.println(" etoile de auto4 :");
+      System.out.println(auto4.etoile());
       
    }
 }

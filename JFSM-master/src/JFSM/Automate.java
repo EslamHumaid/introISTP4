@@ -557,12 +557,27 @@ public class Automate implements Cloneable {
 	/** 
 	* Construit un automate reconnaissant le langage de l'automate à l'étoile : L(this)*
 	* @return un automate reconnaissant la mise à l'étoile
+	 * @throws JFSMException 
 	*/
-	public Automate etoile() {
-		System.out.println("etoile() : méthode non implémentée");
+	public Automate etoile() throws JFSMException {
+		
 		Automate afn = (Automate) this.clone();
-
-		// A compléter
+		afn = afn.standardiser();       //il faut que afn soit standard
+		
+		
+		for(String etatFinal : this.F) {
+			for(Transition trans : this.mu) {
+				if(afn.I.contains(trans.source)) {      //si la source d'une transition est un etat initial
+					
+					    afn.mu.add(new Transition(etatFinal,trans.symbol,trans.cible));               //ajouter une transition de l'etat final vers la cible de la transition avec la meme symbole
+		            
+					
+				}
+			}
+		}
+		
+		afn.F.addAll(afn.I);   //rendre final l'etat initial
+		
 
 		return afn;
 	}
@@ -617,10 +632,25 @@ public class Automate implements Cloneable {
 	/** 
 	* Construit un automate reconnaissant le langage transposé
 	* @return l'automate complet
+	 * @throws JFSMException 
 	*/
-	public Automate transpose() {
-		System.out.println("transpose() : méthode non implémentée");
-		return this;
+	public Automate transpose() throws JFSMException {
+		Automate afn = (Automate) this.clone();
+		
+		afn.I.clear();
+		afn.F.clear();
+		afn.mu.clear();
+		
+		afn.I.addAll(this.F);  //rendre initial ce qui etait final
+		afn.F.addAll(this.I);  //rendre final ce qui etait initial
+		
+		for(Transition trans : this.mu) {        //inverser les transitions
+			afn.mu.add(new Transition(trans.cible,trans.symbol,trans.source));
+		}
+		
+		return afn;
+		
+		
 	}
 
 	/** 

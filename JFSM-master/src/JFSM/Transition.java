@@ -27,6 +27,8 @@
 
 package JFSM;
 
+import java.util.Objects;
+
 /**
  * Transition.java
  *
@@ -104,6 +106,21 @@ public class Transition implements Cloneable {
 	*/
 	public String appliquer() {
 		return cible ;
+	}
+	
+	/** 
+	* tester si deux transition sont egales.  
+	* @return true s'ils sont egales
+	*/
+	public boolean equals(Object other) {
+		if(other instanceof Transition) {
+			Transition t = (Transition)other;
+			
+			return (Objects.equals(t.source, source)) && (Objects.equals(t.cible, cible)) && (Objects.equals(t.symbol, symbol));
+			
+		}else { return false;}
+		
+		
 	}
 
 }
