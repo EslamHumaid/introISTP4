@@ -35,6 +35,15 @@
  * @version 1.0
  */
 
+
+/*
+ * Methodes : { transpose(), etoile(), standardiser(), normalise(), estStandard(),
+ *  estNormalise(), emonder(), estUtile(), estAccessible(), estCoAccessible() }
+ *  
+ *  Implimentees par HUMAID Eslam, BAGHAWITAH Ahmed  Groupe 384J
+ *  
+ */
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -163,7 +172,7 @@ public class JFSM {
       
       /************fin automate 3*************/
       
-      /************automate 4 cas 1 mise a l'etoile*************/
+      /************automate 4 cas 2 mise a l'etoile*************/
       Set<String> A4 = new HashSet<String>();      
       A4.add("a");A4.add("b");A4.add("c");
       
@@ -175,12 +184,12 @@ public class JFSM {
       mu4.add(new Transition("1","a","2"));
       mu4.add(new Transition("2","b","2"));
       mu4.add(new Transition("2","c","3"));
-      
+      mu4.add(new Transition("1","b","3"));
     
       
       Set<String> F4 = new HashSet<String>();
       F4.add("3");
-      F4.add("1");
+     
       
       
       Set<String> I4 = new HashSet<String>();
@@ -189,7 +198,7 @@ public class JFSM {
       Automate auto4 = new AFN(A4, Q4, I4, F4, mu4);
       
       /************fin automate 4*************/
-      
+      /*
       //test automate 2 
       List<String> l2 = new ArrayList<String>();    //MEU MEU BU ZO BU MEU
       l2.add("MEU");l2.add("MEU");l2.add("BU");l2.add("ZO");l2.add("BU");l2.add("MEU");
@@ -203,7 +212,8 @@ public class JFSM {
     
       List<String> l5 = new ArrayList<String>();    //BU GA ZO MEU
       l5.add("BU");l5.add("GA");l5.add("ZO");l5.add("MEU");
-      
+      */
+      /*
       System.out.println("TEST AUTOMATE 1");
       System.out.println(afn);
       System.out.println(afn.run(l));
@@ -214,14 +224,16 @@ public class JFSM {
       System.out.println(afn_des.run(l3));
       System.out.println(afn_des.run(l4));
       System.out.println(afn_des.run(l5));
-   
+      */
+      /*
       System.out.println("-------------------TEST STANDARISER AUTOMATE 2--------------------");
       System.out.println(afn_des);
       System.out.println("est standard? " + afn_des.estStandard());
       System.out.println(afn_des.standardiser());
       System.out.println("est standard?" + afn_des.standardiser().estStandard());
       
-      
+      */
+      /*
       System.out.println("-------------------TEST NORMELISER AUTOMATE 2--------------------");
       System.out.println(afn_des);
       System.out.println("est normale? " + afn_des.estNormalise());
@@ -243,15 +255,18 @@ public class JFSM {
       //test est utile
       System.out.println(" automate is utile");
       System.out.println(afn.estUtile());
+      */
       
-      System.out.println(" -------------test transpose-------------");
+      System.out.println("test de la methode transpose() par un example ( cas 1 des jeux d'essaies)");
+      System.out.println("L'automate:");
       System.out.println(auto3);
-      System.out.println(" transpose de auto3 :");
+      System.out.println("La transpose: :");
       System.out.println(auto3.transpose());
       
-      System.out.println(" -------------test etoile-------------");
+    
+      System.out.println("test de la methode etoile() par un example ( cas 2 des jeux d'essaies)");
       System.out.println(auto4);
-      System.out.println(" etoile de auto4 :");
+      System.out.println(" l'autmoate reconnaissant le langage L* :");
       System.out.println(auto4.etoile());
       
    }

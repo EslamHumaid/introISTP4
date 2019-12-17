@@ -36,6 +36,13 @@
  * @version 1.0
  */
 
+
+/*
+ * Methodes : { transpose(), etoile(), standardiser(), normalise(), estStandard(),
+ *  estNormalise(), emonder(), estUtile(), estAccessible(), estCoAccessible() }
+ *  Implimentees par HUMAID Eslam, BAGHAWITAH Ahmed  Groupe 384J
+ *  
+ */
 package JFSM;
 
 import java.util.Set;
