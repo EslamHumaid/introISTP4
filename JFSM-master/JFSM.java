@@ -141,14 +141,14 @@ public class JFSM {
       I2.add("2");
       I2.add("3");
       
-      Automate afn_des = new AFN(A2, Q2, I2, F2, mu2); //AFN car l'automate n'est pad deteministe 
+      Automate afn_des = new AFN(A2, Q2, I2, F2, mu2); //AFN car l'automate n'est pas deteministe 
       
       
       
       
      /************fin automate 2*************/ 
       
-      /************fin automate 3 cas 1 transpose*************/ 
+      /************automate 3 cas 1 transpose*************/ 
       Set<String> A3 = new HashSet<String>();      
       A3.add("a");A3.add("b");A3.add("c");
       
@@ -198,7 +198,7 @@ public class JFSM {
       Automate auto4 = new AFN(A4, Q4, I4, F4, mu4);
       
       /************fin automate 4*************/
-      /*
+      
       //test automate 2 
       List<String> l2 = new ArrayList<String>();    //MEU MEU BU ZO BU MEU
       l2.add("MEU");l2.add("MEU");l2.add("BU");l2.add("ZO");l2.add("BU");l2.add("MEU");
@@ -212,34 +212,35 @@ public class JFSM {
     
       List<String> l5 = new ArrayList<String>();    //BU GA ZO MEU
       l5.add("BU");l5.add("GA");l5.add("ZO");l5.add("MEU");
-      */
-      /*
+      
+      
       System.out.println("TEST AUTOMATE 1");
       System.out.println(afn);
       System.out.println(afn.run(l));
       
+      
       System.out.println("TEST AUTOMATE 2");
-      System.out.println(afn_des);
+      System.out.println(afn_des);      
       System.out.println(afn_des.run(l2));
       System.out.println(afn_des.run(l3));
       System.out.println(afn_des.run(l4));
       System.out.println(afn_des.run(l5));
-      */
-      /*
+      
+      
       System.out.println("-------------------TEST STANDARISER AUTOMATE 2--------------------");
       System.out.println(afn_des);
       System.out.println("est standard? " + afn_des.estStandard());
       System.out.println(afn_des.standardiser());
       System.out.println("est standard?" + afn_des.standardiser().estStandard());
       
-      */
-      /*
+      
+      
       System.out.println("-------------------TEST NORMELISER AUTOMATE 2--------------------");
       System.out.println(afn_des);
       System.out.println("est normale? " + afn_des.estNormalise());
       System.out.println(afn_des.normaliser());
       System.out.println("est normale?" + afn_des.normaliser().estNormalise());
-      
+      /*
       System.out.println(afn.emonder());
 
       System.out.println(afn);
@@ -252,10 +253,6 @@ public class JFSM {
       System.out.println(afn2);
       
       
-      //test est utile
-      System.out.println(" automate is utile");
-      System.out.println(afn.estUtile());
-      */
       
       System.out.println("test de la methode transpose() par un example ( cas 1 des jeux d'essaies)");
       System.out.println("L'automate:");
@@ -268,6 +265,6 @@ public class JFSM {
       System.out.println(auto4);
       System.out.println(" l'autmoate reconnaissant le langage L* :");
       System.out.println(auto4.etoile());
-      
+      */
    }
 }

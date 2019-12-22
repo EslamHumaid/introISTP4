@@ -519,6 +519,7 @@ public class Automate implements Cloneable {
 	        }
 	      }
 	        
+	      afn = afn.emonder(); //supprimer les etats inutiles
 			
 
 			return afn;
