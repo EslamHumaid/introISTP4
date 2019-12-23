@@ -60,7 +60,7 @@ import JFSM.Transducteur.*;
 
 public class JFSM {
     public static void main(String argv []) throws JFSMException {
-    	/************ automate 1 *************/ 
+    	/*********** automate 1 *************/ 
       Set<String> A = new HashSet<String>();      
       A.add("a");A.add("b");A.add("c");
 
