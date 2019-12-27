@@ -198,7 +198,7 @@ public class JFSM {
       Automate auto4 = new AFN(A4, Q4, I4, F4, mu4);
       
       /************fin automate 4*************/
-      
+      /*
       //test automate 2 
       List<String> l2 = new ArrayList<String>();    //MEU MEU BU ZO BU MEU
       l2.add("MEU");l2.add("MEU");l2.add("BU");l2.add("ZO");l2.add("BU");l2.add("MEU");
@@ -240,6 +240,7 @@ public class JFSM {
       System.out.println("est normale? " + afn_des.estNormalise());
       System.out.println(afn_des.normaliser());
       System.out.println("est normale?" + afn_des.normaliser().estNormalise());
+      */
       /*
       System.out.println(afn.emonder());
 
@@ -253,7 +254,7 @@ public class JFSM {
       System.out.println(afn2);
       
       
-      
+      */
       System.out.println("test de la methode transpose() par un example ( cas 1 des jeux d'essaies)");
       System.out.println("L'automate:");
       System.out.println(auto3);
@@ -265,6 +266,6 @@ public class JFSM {
       System.out.println(auto4);
       System.out.println(" l'autmoate reconnaissant le langage L* :");
       System.out.println(auto4.etoile());
-      */
+      
    }
 }
